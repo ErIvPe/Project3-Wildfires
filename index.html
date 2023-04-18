@@ -2,6 +2,9 @@
 <html>
 <head>
     
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+    crossorigin=""/>
 
     <!-- Leaflet JavaScript code -->
     <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q==" crossorigin=""></script>
@@ -26,12 +29,17 @@
             margin: 20px;
             }
         h5 {color: white;}
+        h2{color: white;
+            text-align: center;}
+        #map { height: 350px; }
+            
 
     </style>
 </head>
 <body>
 
 <h1>Wildfire Data Center</h1>
+<h2>All Information Presented is for 2023</h2>
 <p>our mission with this website is to create a base model that can eventually be expanded upon that is able to 
     visualize the distributions of wildfires and consolidate information relating to their root causes. 
     This data could be utilized by governing agencies, first responders, and the general public to help
@@ -39,7 +47,7 @@
     an idea to these groups on what their risk factors are allowing for them to make better decisions 
     on where to focus prevention efforts. </p>
 
-    <div id="map"></div>
+
 
     <!-- JavaScript file -->
     <!--script type="text/javascript" src="static/js/just-markers.js"></scripEXAMPLEt-->
@@ -53,14 +61,18 @@
             <div id="bar"></div>
           </div>
 
-<div class="well">
-    <h5>Type of map:</h5>
-    <select id="selDataset" onchange="optionChanged(this.value)"></select>
-  </div>
+
+    <h5>2023 US Wildfire Range</h5>
+    <div id="map"></div>
+
+    <h5>2023 US Wildfire Information</h5>
+    <div id="map"></div>
+    
+  
 
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script src="./static/js/app.js"></script>
+<script type="text/javascript" src="app.js"></script>
 
 
 </body>
