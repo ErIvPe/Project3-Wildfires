@@ -1,5 +1,5 @@
 //setup constant for data pull from data source
-fetch("wf_geo_smaller.geojson").then(response => {return response.json();}).then(data => console.log(data));
+fetch("cleanedWF_ChartTrim.geojson").then(response => {return response.json();}).then(data => console.log(data));
 
 //setup to read data
 //d3.json(url).then(function(data) {
