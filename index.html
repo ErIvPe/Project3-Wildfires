@@ -31,7 +31,10 @@
         h5 {color: white;}
         h2{color: white;
             text-align: center;}
-        #map { height: 350px; }
+        #map1 { height: 350px; }
+        #map2 { height: 350px;}
+        #bar {width: 500px;
+            height: 350px;}
             
 
     </style>
@@ -53,6 +56,15 @@
     <!--script type="text/javascript" src="static/js/just-markers.js"></scripEXAMPLEt-->
     <!-- <script type="text/javascript" src="static/js/heatmap.js"></script> -->
 
+
+
+
+    <h5>2023 US Wildfire Range</h5>
+    <div id="map1"></div>
+
+    <h5>2023 US Wildfire Information</h5>
+    <div id="map2"></div>
+    
     <div class="row">
         <div class="col-md-12">
           <div id="bubble"></div>
@@ -62,17 +74,15 @@
           </div>
 
 
-    <h5>2023 US Wildfire Range</h5>
-    <div id="map"></div>
-
-    <h5>2023 US Wildfire Information</h5>
-    <div id="map"></div>
-    
-  
+          <div class="col-md-6">
+            <div id="pie"></div>
+        
 
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="map2.js"></script>
+<script type="text/javascript" src="bar.js"></script>
 
 
 </body>
