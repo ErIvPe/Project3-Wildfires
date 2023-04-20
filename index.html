@@ -41,18 +41,30 @@
             padding: 30px;
             margin: 20px;
             }
+        h3{ color: white;
+            margin: 250px;
+            
+            text-size-adjust: 30px;}
         h5 {color: white;}
         h2{color: white;
             text-align: center;}
-        #map1 { height: 350px; }
-        #map2 { height: 350px;}
+        #map1 { height: 350px;
+            }
+        #map2 { height: 350px;
+            ;}
         #bar {width: 500px;
             height: 350px;}
-        #bubble{ height: 100px;
-            width: 20px;}
-        #mixed_graph{ height: 200px;
+        #bubble{ height: 50px;
+            width: 600px;
+            margin: 50px;
+            margin-left: 10px;}
+        #mixed_graph{ height: 2px;
             width: 50px}
-        #pie { height: 100px;}
+        #pie { height: 50px;
+                width: 100px;
+                margin: 50px ;
+                
+            ;}
             
 
     </style>
@@ -76,24 +88,30 @@
 
 
 
-
-    <h5>2023 US Wildfire Range</h5>
+    <h2>2023 Wildfire Causes</h2>
     <div id="map1"></div>
+    <h5>To interact with our cluster map just either select highlighted polygons or zoom in and out of locations of interest to view markers. Selecting markers will show you more information about their locations and cause. Causes are either natural occurrences or human interference.</h5>
 
-    <h5>2023 US Wildfire Information</h5>
+    <h2>2023 U.S. Wildfire Occurrences</h2>
     <div id="map2"></div>
+    <h5>Our ‘2023 U.S. Wildfire Occurrences’ heatmap depicts where wildfires have been occurring across the U.S. and within the U.S. territory, Puerto Rico.</h5>
+
+
+    <div class="col-md-6">
+    <h2>Fire Causes Pie</h2>
+     <div id="pie"></div> 
+ <div style="float:right;"></div>
     
+    <h3>.</h3>
+   <h2>Wildfire Sizes And Duration</h2> 
 
-
-
-    <div class="row">
-        <div class="col-md-12">
-          <div id="bubble">
-            <canvas id ="mixed_graph" ></canvas>
-          </div>
+   <p>The 'Wildfire Sizes and Duration' graph shows the fires ordered by Object Id number. The colors on the graph each have their own meaning, green is for natural, blue is for undetermined, and orange is for human causes. The size of the circles represnt the area of the fire. The higher the  bubles are in the chart show the duration of the fires. </p>
+    <div class="col-md-12">
+    <div id="bubble">
+    <canvas id ="mixed_graph" ></canvas>
+     </div>
  
-          <div class="col-md-6">
-            <div id="pie"></div>
+
     
 
 
