@@ -2,11 +2,19 @@
 let myMap = L.map("map1", {
     center: [39.0997, -94.5786 ],
     zoom: 3,
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+    position: 'topleft'
+    }  
 });
 // Adding the tile layer
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(myMap);
+
+
+
+
 
 // Use this link to get the GeoJSON data.
 let link = "wildfire_db1.geojson";

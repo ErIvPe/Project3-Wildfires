@@ -1,6 +1,10 @@
 let myMap2 = L.map("map2", {
     center: [39.0997, -94.5786 ],
     zoom: 4,
+    fullscreenControl: true,
+    fullscreenControlOptions: {
+    position: 'topleft'
+  }
   });
   
 // Adding the tile layer
