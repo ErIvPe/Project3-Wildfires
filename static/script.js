@@ -1,9 +1,22 @@
-const path = "cleanedWF_ChartTrim.geojson";
+//const path = "cleanedWF_ChartTrim.geojson";
 
-d3.json(path).then(function(data) {
+/*d3.json(path).then(function(data) {
     console.log(data);
     initChart(data);
-});
+});*/
+
+axios.get('/api/cleanedWF')
+  .then(function(response) {
+    console.log(response);
+    const data = response.data
+    data.features = data.features//.slice(0,1000)
+    console.log(data)
+    initChart(response.data);
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+
 
 function  initChart(data) {
     let run = 'init';
@@ -88,7 +101,7 @@ function setupBubble(data){
       let layout = {
         showlegend: false,
         height: 800,
-        width: 1600,
+        width: '100%',
         plot_bgcolor: 'd3d3d3',
         paper_bgcolor: 'black',
         xaxis: {
