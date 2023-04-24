@@ -33,10 +33,10 @@ axios.get('/api/db1')
     }
   
     let heat = L.heatLayer(heatArray, {
-      radius: 20,
+      radius: 12,
       blur: 1,
-      gradient:{0.2:"blue", 0.3: 'orange', 0.4: 'red', 0.65: 'blue', 1: 'purple'}, 
-      intensity: 1
+      gradient:{0.1:"blue", 0.2: 'orange', 0.3: 'red', 1: 'red'}, 
+      intensity: 20
     }).addTo(myMap2);
 
     console.log(heatArray);
