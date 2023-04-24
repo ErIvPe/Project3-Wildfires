@@ -13,9 +13,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(myMap);
 
 
-
-
-
 // Use this link to get the GeoJSON data.
 //let link = "wildfire_db1.geojson";
 
@@ -35,64 +32,113 @@ axios.get('/api/db1')
     const data = response.data;
     
     // Creating a GeoJSON layer with the retrieved data
-    L.geoJson(data, {
+    //L.geoJson(data, {
       // Passing in our style object
-      style: mapStyle
-    }).addTo(myMap);
+      //style: mapStyle
+    //}).addTo(myMap);
     //console.log("my data", data);
     //getData(data);
+  
+    getData(data);
+    getHuman(data);
+    getNatural(data);
+  
+  })
 
- 
+  
+  .catch(function(error){
+    console.log(error)
+  });
+  
 
 
-
-//Create a new marker cluster group.
-function getData(data) {
+function getData(data){
   // Loop through the data.
-
-
   var markers = L.markerClusterGroup();
-  // Changing data.features.length to 100
-  for (let i = 0; i < 100; i++) {
-    fires = data.features[i];
-    if (fires.properties.fire_cause == 'Human' || fires.properties.fire_cause == 'Natural') {
-      // Set the data location property to a variable.
-
-      let location = fires.geometry.coordinates;
-      //console.log(location);
-      // Check for the location property.
-      if (location) {
-        let name = fires.properties.fire_name;
-        let county = fires.properties.county;
-        let state = fires.properties.fire_state;
-        let trState = state.substring(3, 5);
-        let coord = fires.geometry.coordinates;
-        let cause = fires.properties.fire_cause;
-
-        let textTest = name + "<br>" + county + " County, " + trState + "<br>Coordinates: " + coord + "<br>Fire Cause: " + cause;
-        // Add a new marker to the cluster group, and bind a popup.
-        markers.addLayer(L.marker([location[1], location[0]])
-          .bindPopup(function () {
-            removeLayer(markers)
-            return textTest
-          }));
-      }
-    }
-
-    else {
+for (let i = 0; i < data.features.length; i++) {
+    fires= data.features[i];
+    if(fires.properties.fire_cause == 'Human'||fires.properties.fire_cause == 'Natural'){
       continue;
     }
-
-
+    else {
+        // Set the data location property to a variable.
+        let location = fires.geometry.coordinates;
+        //console.log(location);
+// Check for the location property.
+        if (location) {
+            let name = fires.properties.fire_name;
+            let county = fires.properties.county;
+            let state = fires.properties.fire_state;
+            let trState = state.substring(3,5);
+            let coord = fires.geometry.coordinates;
+            let cause = fires.properties.fire_cause;
+            let textTest = name + "<br>" + county + " County, " + trState + "<br>Coordinates: " + coord +  "<br>Fire Cause: " + cause;
+  // Add a new marker to the cluster group, and bind a popup.
+         markers.addLayer(L.marker([location[1], location[0]])
+            .bindPopup(textTest));
+}
+    }
   }
-  console.log(1);
-
+  //console.log(1);
   myMap.addLayer(markers);
 };
-
-
-}).catch(function (error) {
-  console.log(error);
-});
-
-
+function getHuman(data){
+  // Loop through the data.
+  var markers = L.markerClusterGroup();
+for (let i = 0; i < data.features.length; i++) {
+    fires= data.features[i];
+    if(fires.properties.fire_cause == 'Human'){
+// Set the data location property to a variable.
+        let location = fires.geometry.coordinates;
+        //console.log(location);
+// Check for the location property.
+        if (location) {
+            let name = fires.properties.fire_name;
+            let county = fires.properties.county;
+            let state = fires.properties.fire_state;
+            let trState = state.substring(3,5);
+            let coord = fires.geometry.coordinates;
+            let cause = fires.properties.fire_cause;
+            let textTest = name + "<br>" + county + " County, " + trState + "<br>Coordinates: " + coord +  "<br>Fire Cause: " + cause;
+  // Add a new marker to the cluster group, and bind a popup.
+         markers.addLayer(L.marker([location[1], location[0]])
+            .bindPopup(textTest));
+}
+    }
+    else {
+        continue;
+    }
+  }
+  //console.log(1);
+  myMap.addLayer(markers);
+};
+function getNatural(data){
+  // Loop through the data.
+  var markers = L.markerClusterGroup();
+for (let i = 0; i < data.features.length; i++) {
+    fires= data.features[i];
+    if(fires.properties.fire_cause == 'Natural'){
+// Set the data location property to a variable.
+        let location = fires.geometry.coordinates;
+        //console.log(location);
+// Check for the location property.
+        if (location) {
+            let name = fires.properties.fire_name;
+            let county = fires.properties.county;
+            let state = fires.properties.fire_state;
+            let trState = state.substring(3,5);
+            let coord = fires.geometry.coordinates;
+            let cause = fires.properties.fire_cause;
+            let textTest = name + "<br>" + county + " County, " + trState + "<br>Coordinates: " + coord +  "<br>Fire Cause: " + cause;
+  // Add a new marker to the cluster group, and bind a popup.
+         markers.addLayer(L.marker([location[1], location[0]])
+            .bindPopup(textTest));
+}
+    }
+    else {
+        continue;
+    }
+  }
+  //console.log(1);
+  myMap.addLayer(markers);
+};
