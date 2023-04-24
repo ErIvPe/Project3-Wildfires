@@ -22,6 +22,7 @@ The Bubble Chart shows fire intensity, including frequency, duration, and area a
 
 Pie Chart
 The Pie Chart shows a breakdown of the wildfire cause ratios. Using the legend you can toggle a cause on or off to affect the chart's view.
+
 ![newplot](https://user-images.githubusercontent.com/119901186/234125317-b4905de7-d4ce-4b2d-8866-8cc6cb6c51e2.png)
 
 Heatmap:
