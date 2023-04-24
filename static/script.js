@@ -185,7 +185,7 @@ function setupBubble(data){
         showlegend: true,
         hovermode: 'closest',
         height: 800,
-        width: 1750,
+        width: 1600,
         plot_bgcolor: 'd3d3d3',
         paper_bgcolor: 'black',
         xaxis: {
