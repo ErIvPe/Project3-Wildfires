@@ -21,7 +21,10 @@ def index():
     return render_template('index.html', geojson1=json.dumps(geojson1), geojson2=json.dumps(geojson2), geojson3=json.dumps(geojson3))
     
 
-
+@app.route('/map')
+def map():
+    return render_template("map.html")
+    
 
 
 # Route that returns the wildfire_db.geojson
@@ -33,7 +36,7 @@ def get_wildfires():
 
 
 # Route that returns the fire_class data
-@app.route('/fire_class') 
+@app.route('/api/fire_class') 
 def get_fire_class():
     with open('wildfire_db.geojson') as f:
         data = json.load(f)

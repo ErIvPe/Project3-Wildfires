@@ -33,6 +33,7 @@
     <!-- Leaflet Fullscreen Library-->
     <link rel="stylesheet" href="{{ url_for('static', filename='Control.FullScreen.css') }}" />
     <script src="{{ url_for('static', filename= 'Control.FullScreen.js') }}"></script>
+    <script src="{{ url_for('static', filename= 'icon-fullscreen.svg') }}"></script>
 
     <!-- Marker cluster JavaScript code -->
     <script type="text/javascript"
@@ -50,6 +51,8 @@
     <style>
         body {
             background-color: black;
+            margin: 20px;
+            padding: 30px;
         }
 
         h1 {
@@ -62,7 +65,7 @@
             color: white;
             border: 2px solid yellow;
             padding: 30px;
-            margin: 20px;
+            margin: 30px;
         }
 
         h3 {
@@ -113,19 +116,83 @@
             align-items: center;
             border-style:double;
             border-color: yellow;
+            
         }
 
+        .fbs-dropdown {
+            height: 50px;
+            margin-top: 10px;
+            padding: 10px;
+            align-items: left;
+            justify-self: left;
+            
+
+        }
+
+        #fbs, #fbs-results {
+            border-style: double;
+            border-color: yellow;
+            color: white;
+            display: block;
+           /* justify-content: center left;
+            align-items: center left;
+            text-align: center left ;*/
+            margin: 20px;
+            margin-top: 20px;
+            padding: 20px;
+            width: 100%;
+            font-size: large;
+        }
+
+        /*#panel {
+            width: 35%;
+            float: right;
+            color: white;
+            border-style: double;
+            border-color: yellow;
+            display: block;
+            margin: 20px;
+            padding: 20px;
+            font-size: large;
+            text-align: right;
+
+        }*/
+
+        
+
+        #fbs-results {
+            color: white;
+            
+            
+
+        }
+
+
+
+
+        /*a:link, a:visited, a:hover {
+            color:rgb(36, 118, 240)
+
+        }
+
+        #heatMap {
+            border: 2px solid yellow;
+            margin: 30px;
+            margin-top: 30px;
+            padding: 30px;
+
+        }*/
         .width-100 {
             width: 100%
         }
 
         /* Uncomment this line to debug issues with styling, especially
          when you cannot find the cause of a mis-styling 
-         or undesired visual appearance */
+         or undesired visual appearance 
 
-        /* body * {
+        body * {
             border: 1px solid white;
-        } */
+        }*/
 
         .center-content {
             display: flex;
@@ -162,17 +229,26 @@
         interest to view markers. Selecting markers will show you more information about their locations and cause.
         Causes are either natural occurrences or human interference.</h5>
 
+
+    
     <h2>2023 U.S. Wildfire Occurrences</h2>
     <div id="map2"></div>
     <h5>Our '2023 U.S. Wildfire Occurrences' heatmap depicts where wildfires have been occurring across the U.S. and
         within  U.S. territories.</h5>
+   
+    <div> <br><br> </div>
+    
+    <!--<h2 id="heatMap">   
+     <a href="/map">2023 U.S. Wildfire Occurences Heat Map</a>
+    </h2>-->
+    
+    <div> <br><br> </div>
 
 
     <div class="col-md-6">
         <h2>Distribution of 2023 Fires by Cause</h2>
         <div id="pie"></div>
-
-
+        <div> <br><br><br> </div>
 
         <h2>Wildfire Sizes And Duration</h2>
 
@@ -185,34 +261,60 @@
                 <canvas id="mixed_graph"></canvas>
             </div>
 
+        </div>
+    
+    </div>
+    
+
+
+    <h2>Wildfires by State, County, and Fire Class<br><br</h2>
+
+    <!--<p> Choose a state from the dropdown menu to find the count of fires per county.</p>-->
+    <div class="fires-by-state">
+        <div id="fbs">
+            Choose a state from the dropdown menu to find the count of fires per county and their respective fire class
+        </div>
+        
+        <!--<div id="panel">-->
+
+        </div>
+
+        <div> <br> </div>
+
+        <div id="fbs-results">
+            County and Fire Class
+        </div>
+
+    </div>
+    
+
+
+    <!--{% if config['DEBUG'] %}
+        <pre>
+            <code>
+                {{ config }}
+            </code>
+        </pre>
+
+        <style>
+            pre {
+                white-space: pre-wrap;
+            }
+        </style>
+    {% endif %}-->
 
 
 
-            {% if config['DEBUG'] %}
-            <pre>
-         <code>
-             {{ config }}
-         </code>
-     </pre>
-
-            <style>
-                pre {
-                    white-space: pre-wrap;
-                }
-            </style>
-            {% endif %}
 
 
 
-
-
-
-            <script src="https://d3js.org/d3.v5.min.js"></script>
-            <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-            <script type="text/javascript" src="{{ url_for('static', filename='heatmap.js') }}"></script>
-            <script type="text/javascript" src="{{ url_for('static', filename='data_map.js') }}"></script>
-            <!--<script type="text/javascript" src="{{ url_for('static', filename='bar.js') }}"></script>-->
-            <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='heatmap.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='data_map.js') }}"></script>
+    <!--<script type="text/javascript" src="{{ url_for('static', filename='bar.js') }}"></script>-->
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='fires-by-state.js') }}"></script>
 
 
 
