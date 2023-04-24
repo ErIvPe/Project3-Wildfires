@@ -1,8 +1,7 @@
 axios.get('/api/cleanedWF')
   .then(function(response) {
-    console.log(response);
     const data = response.data
-    console.log(data)
+    //console.log(data)
     initChart(data);
   })
   .catch(function(error) {
@@ -198,7 +197,7 @@ function setupBubble(data){
         },
         yaxis: {
             title: {
-                text: "Fire Duration in Hours",
+                text: "Fire Duration in Hours <br>",
                 font: {
                     color: "white",
                     size: 16
