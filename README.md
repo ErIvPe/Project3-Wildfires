@@ -14,18 +14,3 @@ Our Process:
 4. Flask creation
 5. Html integration
 
-Interactive Visualizations: These visualizations are representations of all fire occurences since the start of 2023- April 16th, 2023 which was when the data was collected.
-
-Bubble Chart
-![newplot (1)](https://user-images.githubusercontent.com/119901186/234125268-25ee7583-aeb1-4a43-8ca7-07ad19044586.png)
-
-PI Chart
-![newplot](https://user-images.githubusercontent.com/119901186/234125317-b4905de7-d4ce-4b2d-8866-8cc6cb6c51e2.png)
-
-Heatmap:
-This map allows you to see the location of all fires that have occurred in the time fram that we observed.
-<img width="1393" alt="Screenshot 2023-04-23 at 9 14 44 PM" src="https://user-images.githubusercontent.com/119901186/234125344-9ebaed30-0667-4ec4-99d5-c64a090a2b0c.png">
-
-Cluster Map:
-This map allows you to interact with markers that represent each fire. Each marker says the fire name, location and the cause of the fire. The causes are either Natural, Human, or Undetermined/000.
-<img width="690" alt="Screenshot 2023-04-23 at 9 07 42 PM" src="https://user-images.githubusercontent.com/119901186/234125358-bf4dd388-dc11-4b50-bc19-48b1f48245b7.png">
