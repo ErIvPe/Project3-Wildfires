@@ -1,28 +1,19 @@
-//const path = "cleanedWF_ChartTrim.geojson";
-
-/*d3.json(path).then(function(data) {
-    console.log(data);
-    initChart(data);
-});*/
-
 axios.get('/api/cleanedWF')
   .then(function(response) {
     console.log(response);
     const data = response.data
-    data.features = data.features//.slice(0,1000)
     console.log(data)
-    initChart(response.data);
+    initChart(data);
   })
   .catch(function(error) {
     console.log(error);
   });
 
 
-function  initChart(data) {
+  function  initChart(data) {
     let run = 'init';
     setupPie(data);
     setupBubble(data);
-    //runDemo(data, id, run); // this function would be used for a table display of interesting and useful statistics
   };
 
 function setupPie(data){
@@ -33,13 +24,21 @@ function setupPie(data){
     var data = [{
         values: burnCount, // causes data
         labels: burnType, // list of causes
-        type: "pie"
+        type: "pie",
+        textfont: {
+            color: "white"
+        }
     }];
 
     var layout = {
         height: 500,
         width: 600,
         paper_bgcolor: "black",
+        legend: {
+            font: {
+                color: "white"
+            }
+        }
       };
 
     Plotly.newPlot('pie', data, layout);
@@ -83,25 +82,110 @@ function setupBubble(data){
         bubOp.push(.4);
     }
 
+    //separate one trace into 3 to allow for legend to be added to allow data toggle
+
+    let ids1 = [];
+    let ids2 = [];
+    let ids3 = [];
+    let dur1 = [];
+    let dur2 = [];
+    let dur3 = [];
+    let ara1 = [];
+    let ara2 = [];
+    let ara3 = [];
+    let col1 = [];
+    let col2 = [];
+    let col3 = [];
+    let opa1 = [];
+    let opa2 = [];
+    let opa3 = [];
+    let pop1 = [];
+    let pop2 = [];
+    let pop3 = [];
+
+    for (let i=0; i<bubCol.length; i++) {
+        if (bubCol[i] == "rgb(255,107,38)") {
+            //human
+            ids1.push(ids[i]);
+            dur1.push(durations[i]);
+            ara1.push(burnArea[i]);
+            col1.push(bubCol[i]);
+            opa1.push(bubOp[i]);
+            pop1.push(popUP[i]);
+
+        }
+        else if (bubCol[i] == "rgb(11,110,41)") {
+            //natural
+            ids2.push(ids[i]);
+            dur2.push(durations[i]);
+            ara2.push(burnArea[i]);
+            col2.push(bubCol[i]);
+            opa2.push(bubOp[i]);
+            pop2.push(popUP[i]);
+        }
+        else if (bubCol[i] == "rgb(15,122,189)") {
+            //undetermined
+            ids3.push(ids[i]);
+            dur3.push(durations[i]);
+            ara3.push(burnArea[i]);
+            col3.push(bubCol[i]);
+            opa3.push(bubOp[i]);
+            pop3.push(popUP[i]);
+        }
+    }
+
     let trace1 = {
-        x: ids, 
-        y: durations,
-        showlegend: false, 
-        text: popUP, 
+        name: "Human",
+        x: ids1, 
+        y: dur1,
+        showlegend: true, 
+        text: pop1, 
+        hoverinfo: "text", 
         mode: 'markers',
         marker: {
-          size: burnArea,  
-          color: bubCol,        
-          opacity: bubOp        
+          size: ara1,  
+          color: col1,        
+          opacity: opa1        
+        }
+      };
+
+    let trace2 = {
+        name: "Natural",
+        x: ids2, 
+        y: dur2,
+        showlegend: true, 
+        text: pop2,
+        hoverinfo: "text", 
+        mode: 'markers',
+        marker: {
+          size: ara2,  
+          color: col2,        
+          opacity: opa2        
         }
       };
     
-      let BubData = [trace1];
+      let trace3 = {
+        name: "Undetermined",
+        x: ids3, 
+        y: dur3,
+        showlegend: true, 
+        text: pop3, 
+        hoverinfo: "text", 
+        mode: 'markers',
+        marker: {
+          size: ara3,  
+          color: col3,        
+          opacity: opa3        
+        }
+      };
+    
+      let BubData = [trace1, trace2, trace3];
     
       let layout = {
-        showlegend: false,
+        showlegend: true,
+        hovermode: 'closest',
         height: 800,
-        width: '100%',
+        width: 1750,
         plot_bgcolor: 'd3d3d3',
         paper_bgcolor: 'black',
         xaxis: {
@@ -119,6 +203,13 @@ function setupBubble(data){
                     color: "white",
                     size: 16
                 }
+            }
+        },
+        legend: {
+            x: 1,
+            y: 0.5,
+            font: {
+                color: "white"
             }
         }
     };
@@ -152,7 +243,7 @@ function pullIDs(data) {
             returnIDs.push(holdID);
         }    
     }
-    console.log(returnIDs);
+
     return returnIDs;
 }
 
@@ -164,10 +255,13 @@ function pullDuration(data) {
     for (let i=0; i<starttimes.length; i++){
         let timeDiff = endtimes[i] - starttimes[i]; //should result in difference in milliseconds
         let diffNhours = timeDiff/3600000;  // should be difference in hours
+        //remove known typo outliers:
+        if (diffNhours > 7000){
+            continue;
+        }
         returnTime.push(diffNhours);
     }
-    console.log(returnTime);
-    console.log(Math.max(returnTime))
+
     return returnTime;
 }
 
@@ -221,9 +315,7 @@ function endtime(data) {
 function getSize(data) {
     let dataIndex = data.features;
     let acres = getAcres(dataIndex);
-    console.log(acres);
     let maxacres = Math.max.apply(Math, acres);
-    console.log(maxacres);
     let minacres = Math.min.apply(Math, acres);
     let returnSize = [];
     for (let i=0; i<acres.length; i++){
@@ -231,14 +323,12 @@ function getSize(data) {
         let size = ((((x-minacres)*200)/(maxacres-minacres))+25);
         returnSize.push(size);
     }
-    console.log(returnSize);
 
     return returnSize;
 }
 
 function getAcres(data) {
     let listAcres = [];
-    console.log(data[0]);
     for (let i=0; i<data.length; i++){
         let row = data[i];
         let holdsize;
@@ -271,7 +361,7 @@ function getAcres(data) {
         }
         
     }
-    console.log(listAcres);
+
     return listAcres;
 }
 
